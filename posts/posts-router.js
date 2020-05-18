@@ -3,7 +3,7 @@ const restricted = require('../auth/restricted-middleware.js')
 const Posts = require('./posts-model')
 
 router.get('/', restricted, (req, res) => {
-    posts
+    Posts
     .findPosts()
     .then(posts => {
         console.log('posts')

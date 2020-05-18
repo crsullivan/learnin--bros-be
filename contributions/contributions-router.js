@@ -15,6 +15,7 @@ router.get('/', restricted, (req, res) => {
 
 router.post('/:userID', restricted, (req, res) => {
     const { userID } = req.params;
+    const email = req.decodedJwt.email;
     const userId = req.decodedJwt.userId;
     const contribution = req.body;
     Contributions

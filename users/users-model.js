@@ -22,7 +22,6 @@ async function add(user) {
   } else {
     console.log(user)
     const [id] = await db('users').insert(user)
-    console.log()
     return findById(id)
   }
 }

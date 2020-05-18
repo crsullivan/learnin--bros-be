@@ -28,16 +28,16 @@ router.post('/register', (req, res) => {
   });
   
   router.post('/login', (req, res) => {
-    let { email, password } = req.body;
+    let { name, password } = req.body;
   
-    Users.findBy({ email })
+    Users.findBy({ name })
       .first()
       .then(user => {
         if (user && bcrypt.compareSync(password, user.password)) {
-          const token = getJwtToken(user.email, user.id);
+          const token = getJwtToken(user.name, user.id);
           console.log("USERID", user.id);
           res.status(200).json({
-            message: `Welcome ${user.email}!`,
+            message: `Welcome ${user.name}!`,
             token
           });
         } else {
