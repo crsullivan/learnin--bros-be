@@ -1,0 +1,35 @@
+const db = require('../database/dbconfig')
+
+module.exports = {
+    findAllContributions,
+    findContributions,
+    saveContribution
+}
+
+function findAllContributions() {
+    return db('contributions');
+}
+
+function findContributions(userId) {
+    return db('contributions').where({'user_id': userId});
+}
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+
+async function saveContribution(contribution, { userId }, date) {
+    console.log(contribution)
+    console.log(userId)
+    
+    return await db('contributions')
+        .insert({
+            ...contribution,
+            user_id: userId,
+            date: {mm}/{dd} 
+        }).catch(e => {
+            console.log(e);
+            throw e;
+        })
+}
+
