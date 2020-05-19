@@ -26,8 +26,8 @@ async function add(user) {
   }
 }
 
-function findBy(email) {
-    return db('users').where(email);
+function findBy(name) {
+    return db('users').where(name);
   }
 
 function findById(id) {

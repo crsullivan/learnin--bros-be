@@ -36,6 +36,7 @@ router.post('/register', (req, res) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = getJwtToken(user.name, user.id);
           console.log("USERID", user.id);
+          console.log("NAME", user.name)
           res.status(200).json({
             message: `Welcome ${user.name}!`,
             token
@@ -64,9 +65,9 @@ router.get('/lemmesee', (req, res) => {
     console.log('users here maybs after')
 })
 
-function getJwtToken(email, userId) {
+function getJwtToken(name, userId) {
     const payload = {
-      email,
+      name,
       userId
     }
     const secret = process.env.JWT_SECRET || 'KEEP IT SECRET KEEP IT SAFE'

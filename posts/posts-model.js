@@ -9,16 +9,17 @@ function findPosts() {
     return db('posts');
 }
 
-async function savePost(post, { userId }) {
+async function savePost(post, { userId, userName }) {
     console.log(post)
     console.log(userId)
-    
+    console.log(userName)
     return await db('posts')
         .insert({
             ...post,
             user_id: userId,
+            user_name: userName
         }).catch(e => {
-            console.log(e);
+            // console.log(e);
             throw e;
         })
 }

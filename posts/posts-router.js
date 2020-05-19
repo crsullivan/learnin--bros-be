@@ -13,12 +13,13 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err))
 })
 
-router.post('/:userID', restricted, (req, res) => {
-    const { userID } = req.params;
+router.post('/new', restricted, (req, res) => {
     const userId = req.decodedJwt.userId;
+    const userName = req.decodedJwt.name
+    console.log("jwt", req.decodedJwt)
     const post = req.body;
     Posts
-    .savePost(post, { userId })
+    .savePost(post, { userId, userName })
     .then(post => {
         res.json(post)
     })

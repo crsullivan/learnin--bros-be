@@ -13,13 +13,17 @@ router.get('/', restricted, (req, res) => {
     .catch(err => res.send(err))
 })
 
-router.post('/:userID', restricted, (req, res) => {
-    const { userID } = req.params;
-    const email = req.decodedJwt.email;
+var today = new Date();
+
+router.post('/new', restricted, (req, res) => {
     const userId = req.decodedJwt.userId;
+    const userName = req.decodedJwt.name
+    console.log("today:", today)
+    console.log("today:", today)
+    const date = today
     const contribution = req.body;
     Contributions
-    .addContribution(contribution, { userId })
+    .saveContribution(contribution, { userId, date, userName })
     .then(contribution => {
         res.json(contribution)
     })

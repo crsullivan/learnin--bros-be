@@ -18,7 +18,7 @@ var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 
-async function saveContribution(contribution, { userId }, date) {
+async function saveContribution(contribution, { userId, date, userName}) {
     console.log(contribution)
     console.log(userId)
     
@@ -26,7 +26,8 @@ async function saveContribution(contribution, { userId }, date) {
         .insert({
             ...contribution,
             user_id: userId,
-            date: {mm}/{dd} 
+            date: date,
+            user_name: userName
         }).catch(e => {
             console.log(e);
             throw e;

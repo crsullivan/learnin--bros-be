@@ -17,6 +17,13 @@ exports.up = function(knex) {
             .inTable('users')
             .onDelete('RESTRICT')
             .onUpdate('CASCADE')
+        t
+            .integer('user_name')
+            .unsigned()
+            .references('name')
+            .inTable('users')
+            .onDelete('RESTRICT')
+            .onUpdate('CASCADE')
     })
 
     .createTable('posts', t => {
@@ -25,6 +32,13 @@ exports.up = function(knex) {
         .integer('user_id')
         .unsigned()
         .references('id')
+        .inTable('users')
+        .onDelete('RESTRICT')
+        .onUpdate('CASCADE')
+        t
+        .integer('user_name')
+        .unsigned()
+        .references('name')
         .inTable('users')
         .onDelete('RESTRICT')
         .onUpdate('CASCADE')
