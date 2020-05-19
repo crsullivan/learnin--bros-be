@@ -50,8 +50,9 @@ router.post('/register', (req, res) => {
   });
 
 router.get('/lemmesee', (req, res) => {
+    console.log('users here maybs before')
     Users.getAll()
-    console.log('users here maybs')
+    console.log('users here maybs after')
     return "Data"
 })
 
