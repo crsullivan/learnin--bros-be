@@ -19,7 +19,6 @@ async function savePost(post, { userId, userName }) {
             user_id: userId,
             user_name: userName
         }).catch(e => {
-            // console.log(e);
             throw e;
         })
 }

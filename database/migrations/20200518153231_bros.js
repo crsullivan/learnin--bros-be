@@ -18,7 +18,7 @@ exports.up = function(knex) {
             .onDelete('RESTRICT')
             .onUpdate('CASCADE')
         t
-            .integer('user_name')
+            .text('user_name')
             .unsigned()
             .references('name')
             .inTable('users')
@@ -36,7 +36,7 @@ exports.up = function(knex) {
         .onDelete('RESTRICT')
         .onUpdate('CASCADE')
         t
-        .integer('user_name')
+        .text('user_name')
         .unsigned()
         .references('name')
         .inTable('users')
