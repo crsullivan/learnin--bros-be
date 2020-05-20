@@ -2,7 +2,7 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 const Contributions = require('./contributions-model')
 
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
     const userId = req.decodedJwt.userId;
     Contributions
     .findAllContributions()

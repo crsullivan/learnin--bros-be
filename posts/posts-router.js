@@ -2,7 +2,7 @@ const router = require('express').Router();
 const restricted = require('../auth/restricted-middleware.js')
 const Posts = require('./posts-model')
 
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
     Posts
     .findPosts()
     .then(posts => {
