@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const server = require('../api/server.js');
+var http = require('http').createServer(server);
+var io = require('socket.io')(http);
 const restricted = require('../auth/restricted-middleware.js')
 const Posts = require('./posts-model')
 
@@ -12,6 +15,17 @@ router.get('/', (req, res) => {
     })
     .catch(err => res.send(err))
 })
+
+io.on("posts", client => {
+    Posts
+    .findPosts()
+    .then(posts => {
+        console.log('posts')
+        console.log(posts);
+        res.json(posts)
+    })
+    .catch(err => res.send(err))
+    });
 
 router.post('/new', restricted, (req, res) => {
     const userId = req.decodedJwt.userId;
