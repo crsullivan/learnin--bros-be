@@ -16,12 +16,11 @@ router.get('/', (req, res) => {
     .catch(err => res.send(err))
 })
 
-io.on("posts", client => {
+io.on("posts", socket => {
     Posts
     .findPosts()
     .then(posts => {
-        console.log('posts')
-        console.log(posts);
+        console.log('socket posts')
         res.json(posts)
     })
     .catch(err => res.send(err))
